@@ -7,8 +7,10 @@ type Message = {
   sender: 'ai' | 'user'
 };
 
+const functionUrl = 'https://xxxxxxxxx.lambda-url.eu-west-2.on.aws/';
 
 function App() {
+  const [ newInput, setNewInput ] = useState<string>("");
   const [ messages, setMessages ] = useState<Message[]>([
     {
       text: "Sample message",
@@ -20,6 +22,24 @@ function App() {
     }
   ]);
 
+  const newMessage: React.FormEventHandler = async (e) => {
+    e.preventDefault();
+    setNewInput('');
+    const newMessages: Message[] = [...messages, {
+      text: newInput,
+      sender: 'user'
+    }];
+    setMessages(newMessages);
+
+    const response = await fetch(functionUrl, {
+      method: 'POST',
+      body: JSON.stringify({ messages: newMessages })
+    });
+    setMessages([...newMessages, {
+      sender: 'ai',
+      text: await response.text()
+    }]);
+  }
 
   return <main>
     <h1>Pirate Chat Bot</h1>
@@ -30,8 +50,12 @@ function App() {
       </p>)}
 
     </div>
-    <form className="input-form">
-      <input type="text" placeholder="Message" />
+    <form className="input-form" onSubmit={newMessage}>
+      <input
+        type="text"
+        placeholder="Message"
+        value={newInput}
+        onChange={(e) => setNewInput(e.target.value)} />
       <input type="submit" value="Send" />
     </form>
   </main>
