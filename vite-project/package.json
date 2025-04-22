@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && cloudflare-pages deploy --project-name vite-project --branch main --directory dist"
   },
   "dependencies": {
     "openai": "^4.95.1",
