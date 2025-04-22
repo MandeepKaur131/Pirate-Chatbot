@@ -1,4 +1,3 @@
-// src/handler.ts
 import { OpenAI } from "openai";
 import type {
 	ChatCompletionSystemMessageParam,
