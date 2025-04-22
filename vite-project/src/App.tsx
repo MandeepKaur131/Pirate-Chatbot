@@ -7,7 +7,7 @@ type Message = {
   sender: 'ai' | 'user'
 };
 
-const functionUrl = 'https://xxxxxxxxx.lambda-url.eu-west-2.on.aws/';
+const functionUrl = 'https://pirate-chatbot.XXXXX.workers.dev';
 
 function App() {
   const [ newInput, setNewInput ] = useState<string>("");
