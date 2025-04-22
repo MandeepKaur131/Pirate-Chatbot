@@ -7,7 +7,7 @@ type Message = {
   sender: 'ai' | 'user'
 };
 
-const functionUrl = 'https://pirate-chatbot.XXXXX.workers.dev';
+const functionUrl = 'https://pirate-chatbot.baryar25mandeepkaur.workers.dev/';
 
 function App() {
   const [ newInput, setNewInput ] = useState<string>("");
